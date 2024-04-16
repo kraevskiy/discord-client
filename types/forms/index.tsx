@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ChannelType } from "@prisma/client";
 
 export const serverSchema = z.object({
   name: z.string().min(1, {
@@ -10,3 +11,17 @@ export const serverSchema = z.object({
 });
 
 export type ServerInputs = z.infer<typeof serverSchema>;
+
+export const channelSchema = z.object({
+  name: z
+    .string()
+    .min(1, {
+      message: "Channel name is required",
+    })
+    .refine((name) => name.toLowerCase() !== "general", {
+      message: "Channel cannot be 'general'",
+    }),
+  type: z.nativeEnum(ChannelType),
+});
+
+export type ChannelInputs = z.infer<typeof channelSchema>;
