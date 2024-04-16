@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CreateServerInputs, createServerSchema } from "@/types/forms";
+import { ServerInputs, serverSchema } from "@/types/forms";
 import { FileUpload } from "@/components/file-upload";
 
 export const InitialModal = () => {
@@ -34,22 +34,21 @@ export const InitialModal = () => {
     setIsMounted(true);
   }, []);
 
-  const form = useForm<CreateServerInputs>({
+  const form = useForm<ServerInputs>({
     defaultValues: {
       name: "",
       imageUrl: "",
     },
-    resolver: zodResolver(createServerSchema),
+    resolver: zodResolver(serverSchema),
   });
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit = async (values: CreateServerInputs) => {
+  const onSubmit = async (values: ServerInputs) => {
     try {
       await axios.post("/api/servers", values);
       form.reset();
       router.refresh();
       window.location.reload();
-
     } catch (e) {
       console.log(e);
     }
