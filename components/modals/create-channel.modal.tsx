@@ -4,7 +4,7 @@ import qs from "query-string";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter } from "next/navigation";
 import { ChannelType } from "@prisma/client";
 
 import {
@@ -55,9 +55,9 @@ export const CreateChannelModal = () => {
       const url = qs.stringifyUrl({
         url: "/api/channels",
         query: {
-          serverId: params?.serverId
-        }
-      })
+          serverId: params?.serverId,
+        },
+      });
       await axios.post(url, values);
       form.reset();
       router.refresh();

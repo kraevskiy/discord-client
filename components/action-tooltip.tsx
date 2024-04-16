@@ -1,10 +1,11 @@
 "use client";
 
 import {
-  Tooltip, TooltipContent,
+  Tooltip,
+  TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from "@/components/ui/tooltip";
 
 interface ActionTooltipProps {
   label: string;
@@ -24,7 +25,7 @@ export const ActionTooltip = ({
       <Tooltip delayDuration={50}>
         <TooltipTrigger>{children}</TooltipTrigger>
         <TooltipContent side={side} align={align}>
-          <p className="font-semibold text-sm capitalize">
+          <p className="text-sm font-semibold capitalize">
             {label.toLowerCase()}
           </p>
         </TooltipContent>

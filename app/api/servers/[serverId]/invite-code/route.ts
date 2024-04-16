@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
+import { nanoid } from "nanoid";
+
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { nanoid } from "nanoid";
 
 export async function PATCH(
   req: Request,
