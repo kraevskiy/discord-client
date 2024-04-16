@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { MemberRole } from ".prisma/client";
-import { ChannelType } from "@prisma/client";
+import { MemberRole } from "@prisma/client";
 
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
@@ -8,10 +7,7 @@ import { db } from "@/lib/db";
 export async function POST(req: Request) {
   try {
     const profile = await currentProfile();
-    const { name, type } = (await req.json()) as {
-      name: string;
-      type: ChannelType;
-    };
+    const { name, type } = await req.json();
     const { searchParams } = new URL(req.url);
 
     if (!profile) {
